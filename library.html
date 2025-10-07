@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Library</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="library.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="navbar">
+    <h1>Your Movie Library</h1>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="library.html">Library</a>
+      <a href="#">About us</a>
+    </nav>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="library-container">
+    <h2>🎬 Ваша библиотека фильмов</h2>
+    <p class="library-desc">
+      Здесь собраны все фильмы, которые вы добавили в свою коллекцию.  
+      Управляйте списком, удаляйте или добавляйте новое!
+    </p>
+
+    <div class="movies-list">
+      <div class="movie-item">
+        <img src="https://i.ibb.co/DQx2gS3/movie1.jpg" alt="Крепкий Орешек">
+        <div class="movie-info">
+          <h3>Крепкий Орешек</h3>
+          <p>Захватывающий боевик с невероятными трюками и динамичным сюжетом.</p>
+          <div class="actions">
+            <button class="watch-btn"><i class="fas fa-play"></i> Смотреть</button>
+            <button class="remove-btn"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="movie-item">
+        <img src="https://i.ibb.co/F6mM3FP/movie2.jpg" alt="Шустрые джентльмены">
+        <div class="movie-info">
+          <h3>Шустрые джентльмены</h3>
+          <p>Легкая комедия, которая поднимает настроение в любой день.</p>
+          <div class="actions">
+            <button class="watch-btn"><i class="fas fa-play"></i> Смотреть</button>
+            <button class="remove-btn"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="movie-item">
+        <img src="https://i.ibb.co/2K0qk9J/movie3.jpg" alt="Остров">
+        <div class="movie-info">
+          <h3>Остров</h3>
+          <p>Эмоциональная драма, затрагивающая важные темы жизни и дружбы.</p>
+          <div class="actions">
+            <button class="watch-btn"><i class="fas fa-play"></i> Смотреть</button>
+            <button class="remove-btn"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons-bottom">
+      <button class="add-btn"><i class="fas fa-plus"></i> Добавить фильм</button>
+      <button class="back-btn" onclick="location.href='index.html'">
+        <i class="fas fa-arrow-left"></i> На главную
+      </button>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025. Все права защищены.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>

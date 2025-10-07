@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Site</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <!-- Основные стили -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #141414;
+      color: #fff;
+    }
+
+    /* ===== Навбар ===== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(0, 0, 0, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .navbar h1 {
+      color: #e50914;
+      font-size: 28px;
+      margin: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #e50914;
+    }
+
+    /* ===== Поисковик в хедере ===== */
+    .header-search {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 30px;
+      padding: 5px 10px;
+      gap: 8px;
+      flex: 1;
+      max-width: 320px;
+    }
+    .header-search input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: #fff;
+      outline: none;
+      padding: 8px;
+      font-size: 14px;
+    }
+    .header-search button {
+      background: #e50914;
+      border: none;
+      color: #fff;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-search button:hover {
+      background: #b20710;
+    }
+
+    /* ===== Баннер ===== */
+    .banner {
+      position: relative;
+      height: 60vh;
+      overflow: hidden;
+    }
+    .banner-slider {
+      display: flex;
+      height: 100%;
+      width: 400%;
+      transition: transform 1s ease-in-out;
+    }
+    .banner-slide {
+      flex: 0 0 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .banner-content {
+      position: absolute;
+      bottom: 40px;
+      left: 50px;
+      max-width: 600px;
+      z-index: 2;
+      text-shadow: 0 6px 24px rgba(0,0,0,0.8);
+    }
+    .banner-content h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    .banner-content p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .banner-content button {
+      background: #e50914;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .banner-content button:hover {
+      background: #b20710;
+    }
+
+    /* ===== Результаты поиска ===== */
+    .search-results {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .result {
+      border-bottom: 1px solid #333;
+      padding: 10px 0;
+    }
+    .result a {
+      color: #e50914;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    .no-results {
+      color: #bbb;
+      font-style: italic;
+    }
+    mark {
+      background-color: yellow;
+    }
+
+    /* ===== Секции фильмов ===== */
+    .movies-section {
+      padding: 20px 50px;
+    }
+    .movies-section h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .movies-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 16px;
+      padding-bottom: 10px;
+      scroll-behavior: smooth;
+    }
+    .movie-card {
+      width: 200px;
+      height: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: #222;
+    }
+    .movie-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .movie-card:hover {
+      transform: scale(1.15);
+      z-index: 10;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .movie-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.85) 100%);
+      color: #fff;
+      transform: translateY(100%);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      opacity: 0;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+    .movie-card:hover .movie-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 60px;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: #e50914;
+    }
+
+    @media (max-width: 700px) {
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .header-search { max-width: 100%; width: 100%; }
+      .movie-card { width: 150px; height: 230px; }
+      .banner-content { left: 20px; right: 20px; max-width: none; }
+      .banner-content h2 { font-size: 28px; }
+    }
+  </style>
+
+  <!-- Подключение внешнего app.js -->
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="navbar">
+    <h1>Films</h1>
+    <div class="header-search">
+      <input id="searchbox" type="text" placeholder="Поиск фильмов..." />
+      <button id="search-btn" aria-label="Поиск">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="library.html">Library</a>
+      <a href="#footer">About us</a>
+    </div>
+  </div>
+
+  <!-- ===== БАННЕР ===== -->
+  <div class="banner">
+    <div class="banner-slider" id="banner-slider">
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/QMJ0R8S/banner.jpg')">
+        <div class="banner-content">
+          <h2>Top Movie Title</h2>
+          <p>Краткое описание фильма, чтобы заинтересовать Вас.</p>
+        </div>
+      </div>
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/DQx2gS3/movie1.jpg')">
+        <div class="banner-content">
+          <h2>Крепкий Орешек</h2>
+          <p>Захватывающий боевик с невероятными трюками.</p>
+          <button><i class="fas fa-play"></i> Смотреть</button>
+        </div>
+      </div>
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/F6mM3FP/movie2.jpg')">
+        <div class="banner-content">
+          <h2>Шустрые джентльмены</h2>
+          <p>Комедия на вечер для всей семьи.</p>
+          <button><i class="fas fa-play"></i> Смотреть</button>
+        </div>
+      </div>
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/2K0qk9J/movie3.jpg')">
+        <div class="banner-content">
+          <h2>Остров</h2>
+          <p>Эмоциональная драма о судьбах людей.</p>
+          <button><i class="fas fa-play"></i> Смотреть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РЕЗУЛЬТАТЫ ПОИСКА ===== -->
+  <div class="search-results" id="results"></div>
+
+  <!-- ===== СЕКЦИИ ФИЛЬМОВ ===== -->
+  <div id="movies" class="movies-section">
+    <h3>Рекомендации</h3>
+    <div class="movies-row">
+      <div class="movie-card">
+        <img src="https://i.ibb.co/DQx2gS3/movie1.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Боевик</span><span> 2ч 10м</span></div>
+          <div>"Крепкий Орешек"</div>
+          <div>Захватывающий боевик с невероятными трюками.</div>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.ibb.co/F6mM3FP/movie2.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Комедия</span><span> 1ч 45м</span></div>
+          <div>"Шустрые джентльмены"</div>
+          <div>Комедия на вечер для всей семьи.</div>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.ibb.co/2K0qk9J/movie3.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Драма</span><span> 2ч 0м</span></div>
+          <div>"Остров"</div>
+          <div>Эмоциональная драма о судьбах людей.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <p>&copy; 2025. Все права защищены.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- ===== Слайдер JS ===== -->
+  <script>
+    let index = 0;
+    const slider = document.getElementById('banner-slider');
+    const slides = document.querySelectorAll('.banner-slide');
+
+    function showSlide(i) {
+      slider.style.transform = `translateX(-${i * 100}%)`;
+    }
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 5000);
+  </script>
+
+</body>
+</html>
