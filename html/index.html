@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Site</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Подключение внешнего app.js -->
+  <script defer src="app.js"></script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+ <div class="header">
+  <h1>Фільми</h1>
+
+  <div class="theme-wrapper">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Перемикання теми">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="theme-menu" class="theme-menu" hidden>
+      <button class="theme-toggle-dark" id="theme-toggle-dark" aria-label="Темна тема">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="theme-toggle-light" id="theme-toggle-light" aria-label="Світла тема">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+  </div>
+</div>
+  <!-- ===== НАВБАР ===== -->
+  <nav class="navbar">
+    <!-- ===== ПОИСКОВИК В НАВБАРЕ ===== -->
+    <div class="search">
+      <input id="searchbox" type="text" placeholder="Пошук фільмів..." />
+      <button id="search-btn" aria-label="Пошук">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  <!-- ===== ССЫЛКИ НА НАВБАРЕ ===== -->
+  <div class="nav-links">
+      <a href="index.html" class="active"><i class="fa-solid fa-house"></i></a>
+      <a href="basket.html"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="user.html"><i class="fa-solid fa-circle-user"></i></a>
+    </div>
+  </nav>
+
+  <!-- ===== БАННЕР ===== -->
+  <div class="banner">
+    <div class="banner-slider" id="banner-slider">
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/7YVZY5S/banner.jpg')">
+        <div class="banner-content">
+          <h2>Найпопулярніші фільми сьогодні: </h2>
+          <p>Короткий опис фільмів, щоб зацікавити Вас.</p>
+         </div>
+        </div>
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/DQx2gS3/movie1.jpg')">
+        <div class="banner-content">
+          <h2>Міцний горішок</h2>
+          <p>Захоплюючий бойовик з неймовірними трюками.</p>
+          <button><i class="fas fa-play"></i> Дивитися</button>
+        </div>
+      </div>
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/F6mM3FP/movie2.jpg')">
+        <div class="banner-content">
+          <h2>Шустрі джентльмени</h2>
+          <p>Комедія на вечір для всієї родини.</p>
+          <button><i class="fas fa-play"></i> Дивитися</button>
+        </div>
+      </div>
+      <div class="banner-slide" style="background-image:url('https://i.ibb.co/2K0qk9J/movie3.jpg')">
+        <div class="banner-content">
+          <h2>Острів</h2>
+          <p>Емоційна драма про долі людей.</p>
+          <button><i class="fas fa-play"></i> Дивитися</button>
+        </div>
+      </div>
+        <div class="banner-slide" style="background-image:url('https://i.ibb.co/F6mM3FP/movie2.jpg')">
+          <div class="banner-content">
+            <h2>Сумерки</h2>
+            <p>Захоплююче фентезі про вампірів та їхні стосунки.</p>
+          <button><i class="fas fa-play"></i> Дивитися</button>
+        </div>
+      </div>
+          <div class="banner-slide" style="background-image:url('https://i.ibb.co/F6mM3FP/movie2.jpg')">
+            <div class="banner-content">
+              <h2>Довга прогулянка</h2>
+              <p>Страшний трилер про нічні пригоди.</p>
+            <button><i class="fas fa-play"></i> Дивитися</button>
+        </div>
+      </div>
+         <div class="banner-slide" style="background-image:url('https://i.ibb.co/F6mM3FP/movie2.jpg')">
+            <div class="banner-content">
+              <h2>Таємниця трьох сестер</h2>
+              <p>Детектив з несподіваними поворотами.</p>
+            <button><i class="fas fa-play"></i> Дивитися</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РЕЗУЛЬТАТЫ ПОИСКА ===== -->
+  <div class="search-results" id="results"></div>
+
+  <!-- ===== СЕКЦИИ ФИЛЬМОВ ===== -->
+  <div id="movies" class="movies-section">
+    <h3>Рекомендації</h3>
+    <div class="movies-row">
+      <div class="movie-card">
+        <img src="https://i.ibb.co/DQx2gS3/movie1.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Бойовик</span><span> 2год 10хв</span></div>
+          <div>"Міцний горішок"</div>
+          <div>Захоплюючий бойовик з неймовірними трюками.</div>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.ibb.co/F6mM3FP/movie2.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Комедія</span><span> 1год 45хв</span></div>
+          <div>"Шустрі джентльмени"</div>
+          <div>Комедія на вечір для всієї родини.</div>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.ibb.co/2K0qk9J/movie3.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Драма</span><span> 2год 0хв</span></div>
+          <div>"Острів"</div>
+          <div>Емоційна драма про долі людей.</div>
+        </div>
+      </div>
+          <div class="movie-card">
+        <img src="https://i.ibb.co/F6mM3FP/movie2.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Фентезі</span><span> 2год 10хв</span></div>
+          <div>"Сумерки"</div>
+          <div>Захоплююче фентезі про вампірів та їхні стосунки.</div>
+        </div>
+      </div>
+          <div class="movie-card">
+        <img src="https://i.ibb.co/F6mM3FP/movie2.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Трилер</span><span> 1год 50хв</span></div>
+          <div>"Довга прогулянка"</div>
+          <div>Страшний трилер про нічні пригоди.</div>
+        </div>
+      </div>
+          <div class="movie-card">
+        <img src="https://i.ibb.co/F6mM3FP/movie2.jpg" alt="">
+        <div class="movie-info">
+          <div class="badges"><span>Детектив</span><span> 2год 3хв</span></div>
+          <div>"Таємниця трьох сестер"</div>
+          <div>Детектив з несподіваними поворотами.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <p>&copy; 2025. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- ===== Слайдер JS ===== -->
+  <script>
+    let index = 0;
+    const slider = document.getElementById('banner-slider');
+    const slides = document.querySelectorAll('.banner-slide');
+
+    function showSlide(i) {
+      slider.style.transform = `translateX(-${i * 100}%)`;
+    }
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 5000);
+  </script>
+
+</body>
+</html>

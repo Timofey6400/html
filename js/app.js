@@ -130,7 +130,7 @@ function search() {
   resultsDiv.innerHTML = "";
 
   if (!term) {
-    resultsDiv.innerHTML = "<p class='no-results'>Введите название фильма.</p>";
+    resultsDiv.innerHTML = "<p class='no-results'>Введіть назву фільму.</p>";
     return;
   }
 
@@ -140,17 +140,17 @@ function search() {
   );
 
   if (results.length === 0) {
-    resultsDiv.innerHTML = "<p class='no-results'>Фильмы не найдены 😕</p>";
+    resultsDiv.innerHTML = "<p class='no-results'>Фільми не знайдені 😕</p>";
     return;
   }
 
-  let html = "<h2>Результаты поиска:</h2>";
+  let html = "<h2>Результати пошуку:</h2>";
   results.forEach(item => {
     html += `
       <div class="result">
         <a href="${item.url}">${highlight(item.title, term)}</a>
         <p>${highlight(item.description, term)}</p>
-        <p><strong>Год:</strong> ${item.year}</p>
+        <p><strong>Рік:</strong> ${item.year}</p>
       </div>
     `;
   });
@@ -160,4 +160,32 @@ function search() {
 searchBtn.addEventListener("click", search);
 searchBox.addEventListener("keydown", e => {
   if (e.key === "Enter") search();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("theme-toggle");
+  const menu = document.getElementById("theme-menu");
+
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener("click", () => {
+    if (menu) {
+      menu.hidden = !menu.hidden;
+    }
+  });
+
+  const darkBtn = document.getElementById("theme-toggle-dark");
+  const lightBtn = document.getElementById("theme-toggle-light");
+
+  darkBtn?.addEventListener("click", () => {
+    document.body.classList.add("dark-theme");
+    document.body.classList.remove("light-theme");
+    if (menu) menu.hidden = true;
+  });
+
+  lightBtn?.addEventListener("click", () => {
+    document.body.classList.add("light-theme");
+    document.body.classList.remove("dark-theme");
+    if (menu) menu.hidden = true;
+  });
 });
