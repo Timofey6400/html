@@ -120,6 +120,24 @@ body {
 .watch-btn:hover {
   background: #b20710;
 }
+
+.buy-btn {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.buy-btn:hover {
+  background: #b20710;
+}
+
 .remove-btn {
   background: transparent;
   border: none;

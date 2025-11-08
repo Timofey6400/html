@@ -2,9 +2,33 @@
   body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #a3948a;
-      color: #fff;
+      background-color: #d1cccc;
+      color: #ffffff;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #888 #444;
+      /* Для WebKit-браузеров */
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: #444;
+      }
     }
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #e50914;
+}
 
 .header {
   display: flex;
@@ -13,7 +37,7 @@
   padding: 0 50px;
   height: 10vh;
   box-sizing: border-box;
-  background: rgba(88, 85, 85, 0.5); /* твой предыдущий фон */
+  background: rgba(88, 85, 85, 0.5); 
   position: relative;
   z-index: 2000;
 }
@@ -25,7 +49,7 @@
   margin-left: auto;    /* запасная страховка — прижать вправо */
 }
 
-/* Стили для кнопки-бургера (можно подправить размеры) */
+/* Стили для кнопки-бургер */
 .theme-toggle {
   background: none;
   border: none;
@@ -35,18 +59,23 @@
   padding: 8px;
 }
 
+.theme-toggle:hover {
+  background-color: #868282;
+  border-radius: 6px;
+}
+
 /* Меню выбора темы — выпадает ПРАВОЕ относительно .theme-wrapper */
 .theme-menu {
   position: absolute;
   top: calc(100% + 6px); /* немного ниже кнопки */
   right: 0;               /* прижать к правому краю wrapper'а */
-  background: #fff;
-  border: 1px solid #ccc;
+  background: #ffffff;
+  border: 1px solid #726a6a;
   border-radius: 10px;
   padding: 6px 8px;
   display: flex;
   gap: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(231, 9, 9, 0.2);
   z-index: 3000;
 
   /* плавное появление */
@@ -85,8 +114,8 @@
 }
 
 /* Сохраняем темы для body */
-body.dark-theme { background-color: #111; color: #fff; }
-body.light-theme { background-color: #fff; color: #000; }
+body.dark-theme { background-color: #111; color: #d8d1d1; }
+body.light-theme { background-color: #d1cccc; color: #ffffff; }
 
     /* ===== Навбар ===== */
     .navbar {
@@ -101,7 +130,73 @@ body.light-theme { background-color: #fff; color: #000; }
       flex-wrap: wrap;
       gap: 12px;
     }
-      /* ===== Поисковик ===== */
+
+/* ===== Каталог фільмів ===== */
+    .nav-catalog button {
+      background: #e50914;
+      border: none;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-catalog button:hover {
+      background: #b20710;
+    }
+
+    /* Popup-окно каталога */
+    #catalog {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 200px;
+      background: #242222;
+      border: 1px solid #797777;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      padding: 10px;
+      z-index: 1000;
+
+      /* Изначально скрыто */
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* Когда открыто */
+    #catalog.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Список жанров */
+    #catalog ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #catalog button {
+      background: #242222;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #catalog button:hover {
+      background: #3f3c3c;
+    }
+
+    /* ===== Поисковик ===== */
     .search {
       display: flex;
       align-items: center;
@@ -289,22 +384,67 @@ body.light-theme { background-color: #fff; color: #000; }
     }
 
     /* ===== Footer ===== */
-    footer {
-      background-color: #141414;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 60px;
-    }
-    .social-icons a {
-      color: white;
-      margin: 0 8px;
-      text-decoration: none;
-    }
-    .social-icons a:hover {
-      color: #e50914;
-    }
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* выравниваем центральный контент по центру */
+  position: relative;  /* для позиционирования левого блока */
+  padding:  15px 10px 10px;
+  text-align: center;
+  background-color: #aa1018; /* пример фона, если нужен */
+  color: #fff;           /* пример текста */
+}
 
+/* Блок "Інші платформи" */
+.footer-left {
+  position: absolute;
+  top: 70px;   /* отступ сверху */
+  left: 20px;  /* отступ слева */
+  text-align: left;
+}
+
+/* Центральный текст */
+.footer-center {
+  margin-top: 70px; /* немного вниз, чтобы не перекрывало левый блок */
+}
+
+/* Оформление списка */
+.platforms, .platforms ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.platforms li {
+  margin-bottom: 4px;
+}
+
+.platforms a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.platforms a:hover {
+  color: #383636; /* эффект при наведении */
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 8px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.social-icons a:hover {
+  color: #e50914;
+}
+
+    /* ===== Адаптивность ===== */
     @media (max-width: 700px) {
       .navbar { flex-direction: column;  padding: 10px 20px; align-items: flex-start; }
       .nav-links { flex-wrap: wrap; justify-content: center; }

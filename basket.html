@@ -9,21 +9,54 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="basket.css" />
+  <link rel="stylesheet" href="css/basket.css" />
+
+  <!-- Подключение внешнего basket.js -->
+   <script defer src="js/basket.js"></script>
 </head>
 <body>
-
   <!-- ===== HEADER ===== -->
-  <header class="navbar">
-    <h1>Твій Кошик</h1>
-        <div class="header-search">
+  <header class="header">
+    <h1>Фільми</h1>
+
+  <div class="theme-wrapper">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Перемикання теми">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="theme-menu" class="theme-menu" hidden>
+      <button class="theme-toggle-dark" id="theme-toggle-dark" aria-label="Темна тема">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="theme-toggle-light" id="theme-toggle-light" aria-label="Світла тема">
+        <i class="fas fa-sun"></i>
+      </button>
     </div>
-    <nav class="nav-links">
+  </div>
+</header>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="nav">
+    <!-- Каталог фільмів -->
+  <nav class="nav-catalog">
+      <button id="catalog-btn">Сортування по жанрам <i class="fa-solid fa-caret-down"></i></button>
+      <div id="catalog">
+        <ul>
+          <button>Бойовик</button>
+          <button>Комедія</button>
+          <button>Драма</button>
+          <button>Жахи</button>
+          <button>Фантастика</button>
+          <button>Мультфільми</button>
+        </ul>
+      </div>
+    </nav>
+    <!-- Ссылки в навигации -->
+    <div class="nav-links">
       <a href="index.html"><i class="fa-solid fa-house"></i></a>
       <a href="basket.html" class="active"><i class="fa-solid fa-cart-shopping"></i></a>
       <a href="user.html"><i class="fa-solid fa-circle-user"></i></a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main class="basket-container">
@@ -38,9 +71,10 @@
         <img src="https://i.ibb.co/DQx2gS3/movie1.jpg" alt="Крепкий Орешек">
         <div class="movie-info">
           <h3>Міцний горішок</h3>
-          <p>Захоплюючий бойовик з неймовірними трюками та динамічним сюжетом.</p>
+          <p>Захоплюючий бойовик.</p>
           <div class="actions">
             <button class="watch-btn"><i class="fas fa-play"></i> Дивитися</button>
+            <button class="buy-btn"><i class="fas fa-shopping-cart"></i> Купити</button>
             <button class="remove-btn"><i class="fas fa-trash"></i></button>
           </div>
         </div>
@@ -50,9 +84,10 @@
         <img src="https://i.ibb.co/F6mM3FP/movie2.jpg" alt="Шустрые джентльмены">
         <div class="movie-info">
           <h3>Шустрі джентльмени</h3>
-          <p>Легка комедія, яка піднімає настрій у будь-який день.</p>
+          <p>Легка комедія.</p>
           <div class="actions">
             <button class="watch-btn"><i class="fas fa-play"></i> Дивитися</button>
+            <button class="buy-btn"><i class="fas fa-shopping-cart"></i> Купити</button>
             <button class="remove-btn"><i class="fas fa-trash"></i></button>
           </div>
         </div>
@@ -62,9 +97,10 @@
         <img src="https://i.ibb.co/2K0qk9J/movie3.jpg" alt="Остров">
         <div class="movie-info">
           <h3>Острів</h3>
-          <p>Емоційна драма, що торкається важливих тем життя та дружби.</p>
+          <p>Емоційна драма.</p>
           <div class="actions">
             <button class="watch-btn"><i class="fas fa-play"></i> Дивитися</button>
+            <button class="buy-btn"><i class="fas fa-shopping-cart"></i> Купити</button>
             <button class="remove-btn"><i class="fas fa-trash"></i></button>
           </div>
         </div>
@@ -81,11 +117,12 @@
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; 2025. All rights reserved.</p>
+    <p>&copy; 2025. Всі права захищені.</p>
     <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-telegram"></i></a>
     </div>
   </footer>
 

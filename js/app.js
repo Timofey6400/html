@@ -1,3 +1,4 @@
+// ДАННЫЕ ФИЛЬМОВ
 const data = [
   { title: "Інтерстеллар", description: "Фантастичний фільм Крістофера Нолана про подорожі крізь космос і час.", year: 2014, url: "#interstellar" },
   { title: "Початок", description: "Науково-фантастичний трилер про сни та підсвідомість, реж. Крістофер Нолан.", year: 2010, url: "#inception" },
@@ -116,6 +117,7 @@ const data = [
   { title: "Кавказька полонянка", description: "Радянська комедія про любов і пригоди в горах Кавказу.", year: 1967, url: "#caucasian-captive" },
 ];
 
+// ПОИСКОВИК ФИЛЬМОВ
 const searchBtn = document.getElementById("search-btn");
 const searchBox = document.getElementById("searchbox");
 const resultsDiv = document.getElementById("results");
@@ -157,6 +159,7 @@ function search() {
   resultsDiv.innerHTML = html;
 }
 
+// СМЕНА ТЕМЫ В МЕНЮ ХЕДЕРА
 searchBtn.addEventListener("click", search);
 searchBox.addEventListener("keydown", e => {
   if (e.key === "Enter") search();
@@ -187,5 +190,31 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("light-theme");
     document.body.classList.remove("dark-theme");
     if (menu) menu.hidden = true;
+  });
+});
+
+// КАТАЛОГ ФИЛЬМОВ В НАВБАРЕ
+document.addEventListener("DOMContentLoaded", () => {
+  const catalogBtn = document.getElementById("catalog-btn");
+  const catalogDiv = document.getElementById("catalog");
+
+  if (!catalogBtn || !catalogDiv) return;
+
+  // Переключение окна каталога
+  catalogBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // чтобы клик не закрыл сразу
+    catalogDiv.classList.toggle("show");
+  });
+
+  // Клик вне — закрыть
+  document.addEventListener("click", (e) => {
+    if (!catalogDiv.contains(e.target) && !catalogBtn.contains(e.target)) {
+      catalogDiv.classList.remove("show");
+    }
+  });
+
+  // Закрыть по Esc
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") catalogDiv.classList.remove("show");
   });
 });
