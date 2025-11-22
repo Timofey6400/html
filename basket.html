@@ -16,8 +16,8 @@
 </head>
 <body>
   <!-- ===== HEADER ===== -->
-  <header class="header">
-    <h1>Фільми</h1>
+ <div class="header">
+  <h1>Фільми</h1>
 
   <div class="theme-wrapper">
     <button class="theme-toggle" id="theme-toggle" aria-label="Перемикання теми">
@@ -33,20 +33,22 @@
       </button>
     </div>
   </div>
-</header>
+</div>
+
   <!-- ===== NAVBAR ===== -->
   <nav class="nav">
+
     <!-- Каталог фільмів -->
   <nav class="nav-catalog">
       <button id="catalog-btn">Сортування по жанрам <i class="fa-solid fa-caret-down"></i></button>
       <div id="catalog">
         <ul>
-          <button>Бойовик</button>
-          <button>Комедія</button>
-          <button>Драма</button>
-          <button>Жахи</button>
-          <button>Фантастика</button>
-          <button>Мультфільми</button>
+          <li><button>Бойовик</button></li>
+          <li><button>Комедія</button></li>
+          <li><button>Драма</button></li>
+          <li><button>Жахи</button></li>
+          <li><button>Фантастика</button></li>
+          <li><button>Мультфільми</button></li>
         </ul>
       </div>
     </nav>
@@ -61,10 +63,6 @@
   <!-- ===== MAIN CONTENT ===== -->
   <main class="basket-container">
     <h2>🎬 Ваш кошик фільмів</h2>
-    <p class="basket-desc">
-      Тут зібрані всі фільми, які ви додали до своєї колекції.
-      Керуйте списком, видаляйте або додавайте нові!
-    </p>
 
     <div class="movies-list">
       <div class="movie-item">
@@ -115,16 +113,26 @@
     </div>
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
+  <!-- Фут -->
+
+<footer>
+  <div class="footer-left">
+    <ul class="platforms">
+      <li>Інші платформи:
+        <ul>
+          <li><a href="https://www.netflix.com/ua">Netflix</a></li>
+          <li><a href="https://megogo.net/ua">Megogo</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="footer-center">
     <p>&copy; 2025. Всі права захищені.</p>
-    <div class="social-icons">
+  </div>
+   <div class="social-icons">
       <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
       <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
       <a href="#"><i class="fa-brands fa-instagram"></i></a>
       <a href="#"><i class="fa-brands fa-telegram"></i></a>
     </div>
-  </footer>
-
-</body>
-</html>
+</footer>
